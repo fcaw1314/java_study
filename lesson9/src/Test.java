@@ -23,14 +23,28 @@ class Dog extends Animal{
     public Dog(String name,int age){
         super(name, age);
     }
-    public void bark(){
+    @Override
+    public void eat(){
         System.out.println(this.name+"汪汪叫");
     }
-
 }
+
+class Cat extends Animal{
+
+    public Cat(String name, int age) {
+        super(name, age);
+    }
+    @Override
+    public void eat(){
+        System.out.println(this.name+"正在吃猫粮！");
+    }
+}
+
 public class Test {
     public static void main(String[] args) {
-        Dog dog = new Dog("圆圆",6);
-        dog.bark();
+        Animal dog = new Dog("圆圆",6);
+        dog.eat();
+        Animal cat = new Cat("十三月",1);
+        cat.eat();
     }
 }
