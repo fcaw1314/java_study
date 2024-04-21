@@ -24,7 +24,7 @@ public abstract class User {
 
     public abstract int menu();
 
-    public void doOperation(int choice, BookList bookList){
+    public void doOperation(int choice, BookList bookList) {
         ioPerations[choice].work(bookList);
     }
 }
