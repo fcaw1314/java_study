@@ -8,10 +8,18 @@
  * @Version: 1.0
  */
 public class Test {
-    public static void main(String[] args) {
-        int a = 10;
-        if(a == 10){
-            throw new NullPointerException("ahhahahahahha");
+    public static int func(){
+        try {
+            int[] array = null;
+            System.out.println(array.length);
+        }catch (NullPointerException e){
+            System.out.println("捕获到了一个空指针异常");
+        }finally {
+            System.out.println("这里执行了finnal ");
         }
+        return 100;
+    }
+    public static void main(String[] args) {
+        System.out.println(func());
     }
 }
