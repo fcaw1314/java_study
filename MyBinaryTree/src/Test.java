@@ -12,6 +12,10 @@ public class Test {
         BinaryTree binaryTree = new BinaryTree();
         BinaryTree.TreeNode root = binaryTree.createTree();
         binaryTree.preOrder(root);
-
+        System.out.println();
+        System.out.println("第k层结点个数:");
+        System.out.println(binaryTree.getKLevelNodeCount(root,4));
+        System.out.println("高度");
+        System.out.println(binaryTree.getHeight(root));
     }
 }
