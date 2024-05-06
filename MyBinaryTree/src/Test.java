@@ -17,5 +17,7 @@ public class Test {
         System.out.println(binaryTree.getKLevelNodeCount(root,4));
         System.out.println("高度");
         System.out.println(binaryTree.getHeight(root));
+        System.out.println("层序遍历");
+        BinaryTree.levelOrder(root);
     }
 }

@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 import static sun.swing.MenuItemLayoutHelper.max;
 
 /**
@@ -158,7 +161,21 @@ public class BinaryTree {
         }
         return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
+    int getHeight2(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftH = getHeight2(root.left);
+        if(leftH < 0){
+            return -1;
+        }
+        int rightH = getHeight2(root.right);
+        if(leftH >=0 && rightH >= 0 && Math.abs(leftH-rightH) <= 1){
+            return Math.max(leftH,rightH)+1;
+        }
+        return -1;
 
+    }
 
     // 检测值为value的元素是否存在
     TreeNode find(TreeNode root, char val) {
@@ -180,8 +197,19 @@ public class BinaryTree {
     }
 
     //层序遍历
-    void levelOrder(TreeNode root) {
-
+    static void levelOrder(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            TreeNode cur = queue.poll();
+            System.out.print(cur.val + " ");
+            if(cur.left != null){
+                queue.offer(cur.left);
+            }
+            if(cur.right != null){
+                queue.offer(cur.right);
+            }
+        }
     }
 
 
