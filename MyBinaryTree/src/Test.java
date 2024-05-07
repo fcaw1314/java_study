@@ -19,5 +19,8 @@ public class Test {
         System.out.println(binaryTree.getHeight(root));
         System.out.println("层序遍历");
         BinaryTree.levelOrder(root);
+        System.out.println("==========================");
+        boolean flg = binaryTree.isCompleteTree(root);
+        System.out.println(flg);
     }
 }

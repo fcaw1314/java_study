@@ -38,7 +38,7 @@ public class BinaryTree {
         B.right = E;
         C.left = F;
         C.right = G;
-        E.right = H;
+      //  E.right = H;
         return A;
     }
 
@@ -215,6 +215,26 @@ public class BinaryTree {
 
     // 判断一棵树是不是完全二叉树
     boolean isCompleteTree(TreeNode root) {
+        if(root == null){
+            return true;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            TreeNode cur = queue.poll();
+            if(cur != null){
+                queue.offer(cur.left);
+                queue.offer(cur.right);
+            }else{
+                break;
+            }
+        }
+      while (!queue.isEmpty()){
+          TreeNode cur = queue.poll();
+          if(cur != null){
+              return false;
+          }
+      }
         return true;
     }
 
