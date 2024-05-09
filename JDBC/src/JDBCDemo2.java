@@ -9,22 +9,16 @@ import java.util.Scanner;
 /**
  * @ProjectName: JDBC
  * @Package: PACKAGE_NAME
- * @ClassName: JDBCDemo
+ * @ClassName: JDBCDemo2
  * @author: Yxb
  * @Description:
- * @Date: 2024/5/8 20:30
+ * @Date: 2024/5/9 15:05
  * @Version: 1.0
  */
-
-
-public class JDBCDemo {
+public class JDBCDemo2 {
     public static void main(String[] args) throws SQLException {
-        //接下来通过JDBC进行一个简单的插入操作
-        //JDBC代码写起来,对于初学者来说,有一点繁琐
-        //步骤很多
-
         Scanner scanner = new Scanner(System.in);
-        //1.创建"数据源"
+        //1.创建数据源
         DataSource dataSource = new MysqlDataSource();
         ((MysqlDataSource) dataSource).setURL("jdbc:mysql://127.0.0.1:3306/yxb?characterEncoding=utf8&useSSL=false");
         ((MysqlDataSource) dataSource).setUser("root");
@@ -34,15 +28,11 @@ public class JDBCDemo {
         Connection connection = dataSource.getConnection();
 
         //3.构造数据库的 sql 语句
-        System.out.println("请输入你的学号:");
-        int id =scanner.nextInt();
-        System.out.println("请输入你的姓名");
-        String name = scanner.next();
-        //String sql = "insert into test values(1,'张三')";
-        String sql = "insert into student values(?,?)";
+
+        String sql = "update student set name = '王大锤' where id = 3";
+
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1,id);
-        preparedStatement.setString(2,name);
+
 
         //4.执行 sql,把刚才解析好的语句发给数据库服务器
         int n = preparedStatement.executeUpdate();
@@ -51,6 +41,5 @@ public class JDBCDemo {
         //5.释放资源
         preparedStatement.close();
         connection.close();
-
     }
 }
