@@ -37,7 +37,6 @@ public class Demo1 {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
         }
 
     }
