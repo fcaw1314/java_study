@@ -108,7 +108,7 @@ public class Sort {
     }
 
     private static void createHeap(int[] array) {
-        for (int parent = (array.length - 1 - 1) / 2; parent > 0; parent--) {
+        for (int parent = (array.length - 1 - 1) / 2; parent >= 0; parent--) {
             siftDown(array, parent, array.length);
         }
     }
@@ -196,10 +196,111 @@ public class Sort {
     }
 
     public static void mergeSort(int[] array) {
-
+        mergeFunc(array, 0, array.length - 1);
     }
 
-    private static void mergeFunc(){
+    private static void mergeFunc(int[] array, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int mid = left + ((right - left) >> 1);
+        mergeFunc(array, left, mid);
+        mergeFunc(array, mid + 1, right);
+        //左边分解完，右边分解完，开始合并
+        merge(array, left, mid, right);
+    }
 
+    private static void merge(int[] array, int left, int mid, int right) {
+        int s1 = left;
+        int e1 = mid;
+        int s2 = mid + 1;
+        int e2 = right;
+        int[] tmpArr = new int[right - left + 1];
+        int k = 0;
+
+        //保证两个表都有数据
+        while (s1 <= e1 && s2 <= e2) {
+            if (array[s1] <= array[s2]) {
+                tmpArr[k++] = array[s1++];
+            } else {
+                tmpArr[k++] = array[s2++];
+            }
+        }
+        //看那个数组还有数据拷贝回去
+        while (s1 <= e1) {
+            tmpArr[k++] = array[s1++];
+        }
+        while (s2 <= e2) {
+            tmpArr[k++] = array[s2++];
+        }
+
+        for (int i = 0; i < k; i++) {
+            array[left + i] = tmpArr[i];
+        }
+    }
+
+    /**
+     * @description 非递归实现归并排序
+     * SORT
+     * @date 2024/5/15 14:44:39
+     */
+    public static void mergeSortNor(int[] array) {
+        int gap = 1;
+        while (gap < array.length) {
+            for (int i = 0; i < array.length; i = i + 2 * gap) {
+                int left = i;
+                int mid = left + gap - 1;
+                if (mid >= array.length) {
+                    mid = array.length - 1;
+                }
+                int right = mid + gap;
+                if (right >= array.length) {
+                    right = array.length - 1;
+                }
+                merge(array, left, mid, right);
+            }
+
+            gap *= 2;
+        }
+    }
+
+    public static void countSort(int[] array) {
+        //求最值
+        int min = array[0];
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+
+        //定义计数数组
+        int[] count = new int[max - min + 1];
+        for (int i = 0; i < array.length; i++) {
+            int index = array[i] - min;
+            count[index]++;
+        }
+
+        //遍历数组
+        int k = 0;
+        for (int i = 0; i < count.length; i++) {
+            while (count[i] != 0) {
+                array[k] = i+min;
+                k++;
+                count[i]--;
+            }
+        }
     }
 }
+
+
+
+
+
+
+
+
+
