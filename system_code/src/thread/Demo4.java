@@ -1,5 +1,7 @@
 package thread;
 
+import java.util.Scanner;
+
 /**
  * @author yxb
  * @version 1.0
@@ -12,5 +14,6 @@ public class Demo4 {
         Thread t1 = new Thread(()->{
 
         });
+
     }
 }
