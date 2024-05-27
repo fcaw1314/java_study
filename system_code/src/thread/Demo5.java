@@ -13,14 +13,21 @@ public class Demo5 {
     public static int count = 0;
 
     public static void main(String[] args) throws InterruptedException {
+        Object locker = new Object();
+
         Thread t1 = new Thread(() -> {
             for (int i = 0; i < 50000; i++) {
-                count++;
+                //加锁操作
+                synchronized(locker){
+                    count++;
+                }
             }
         });
         Thread t2 = new Thread(() -> {
             for (int i = 0; i < 50000; i++) {
-                count++;
+                synchronized(locker) {
+                    count++;
+                }
             }
         });
         t1.start();
