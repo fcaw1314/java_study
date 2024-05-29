@@ -16,7 +16,7 @@ public class Demo5 {
         Object locker = new Object();
 
         Thread t1 = new Thread(() -> {
-            for (int i = 0; i < 50000; i++) {
+            for (int i = 0; i < 10000; i++) {
                 //加锁操作
                 synchronized(locker){
                     count++;
@@ -24,7 +24,7 @@ public class Demo5 {
             }
         });
         Thread t2 = new Thread(() -> {
-            for (int i = 0; i < 50000; i++) {
+            for (int i = 0; i < 10000; i++) {
                 synchronized(locker) {
                     count++;
                 }
