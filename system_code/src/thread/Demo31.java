@@ -10,7 +10,7 @@ package thread;
 class MyBlockingQueue {
     private String[] elems = null;
     //[head,tail)
-    //head 指的是第一个元素,tail指的是最后一个元素的下一个原始
+    //head 指的是第一个元素,tail指的是最后一个元素的下一个元素
     private int head = 0;
     private int tail = 0;
     private int size = 0;
@@ -20,33 +20,37 @@ class MyBlockingQueue {
     }
 
     void put(String elem) throws InterruptedException {
-        synchronized (this){
-            while(size >= elems.length) {
+        synchronized (this) {
+            while (size >= elems.length) {
                 //队列满了
                 this.wait();
             }
+            // 把新的元素放到 tail 所在的位置上.
             elems[tail] = elem;
             tail++;
-            if(tail >= elems.length) {
+            if (tail >= elems.length) {
                 //到达末尾,就回到开头
                 tail = 0;
             }
             //更新size值
             size++;
+
             //唤醒下面take阻塞的wait操作
             this.notify();
         }
     }
-//出队列
+
+    //出队列
     String take() throws InterruptedException {
         synchronized (this) {
-            while(size == 0) {
+            while (size == 0) {
+                //队列为空
                 this.wait();
             }
             //取出head指向的元素
             String result = elems[head];
             head++;
-            if(head >= elems.length) {
+            if (head >= elems.length) {
                 head = 0;
             }
             size--;
