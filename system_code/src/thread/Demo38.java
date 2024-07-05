@@ -8,6 +8,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @description:
  * @date 2024/7/4 20:41
  */
+
+//基于AtomicInteger实现自增同一个变量
 public class Demo38 {
     private static AtomicInteger count = new AtomicInteger(0);
 
