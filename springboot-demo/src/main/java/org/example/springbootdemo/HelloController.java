@@ -24,7 +24,6 @@ public class HelloController {
 //        int a= 4/0;
 //        return 111;
         return "hello Spring Boot~杨晓波";
-
     }
 
     @RequestMapping("/sayHi")
