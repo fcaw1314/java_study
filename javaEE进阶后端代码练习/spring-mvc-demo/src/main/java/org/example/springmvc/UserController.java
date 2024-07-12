@@ -1,6 +1,7 @@
-package org.example.springmvcdemo;
+package org.example.springmvc;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,4 +17,10 @@ public class UserController {
     public String hello(){
         return "hello spring mvc";
     }
+
+    @RequestMapping(value = "/hello",method = RequestMethod.POST)
+    public String demo1(){
+        return "hello spring mvc";
+    }
+
 }
