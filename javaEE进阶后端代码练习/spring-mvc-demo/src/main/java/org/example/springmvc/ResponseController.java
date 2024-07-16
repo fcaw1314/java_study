@@ -2,6 +2,7 @@ package org.example.springmvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -17,5 +18,11 @@ public class ResponseController {
     @RequestMapping("/index")
     public String index() {
         return "/index.html";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/r1", produces = "application/json; charset=UTF-8")
+    public String r1() {
+        return "{\"status\":400}";
     }
 }
