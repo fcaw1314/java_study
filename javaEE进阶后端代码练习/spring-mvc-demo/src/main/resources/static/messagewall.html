@@ -62,29 +62,68 @@
         <!-- <div>A 对 B 说: hello</div> -->
     </div>
 
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script>
- 
-        function submit(){
+        $.ajax({
+            type: "get",
+            url: "/message/getList",
+            success: function (messages) {
+                if (messages != null) {
+                    for (var message of messages) {
+                        var divE = "<div>" + message.from + "对" + message.to + "说:" + message.msg + "</div>";
+                        $(".container").append(divE);
+                    }
+                }
+            }
+        });
+
+
+        function submit() {
             //1. 获取留言的内容
             var from = $('#from').val();
             var to = $('#to').val();
             var say = $('#say').val();
-            if (from== '' || to == '' || say == '') {
+            if (from == '' || to == '' || say == '') {
                 return;
             }
-            //2. 构造节点
-            var divE = "<div>"+from +"对" + to + "说:" + say+"</div>";
-            //3. 把节点添加到页面上    
-            $(".container").append(divE);
+            //调用后端接口, 发表留言
 
-            //4. 清空输入框的值
-            $('#from').val("");
-            $('#to').val("");
-            $('#say').val("");
-            
+            $.ajax({
+                type: "post",
+                url: "/message/publish",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "from": from,
+                    "to": to,
+                    "msg": say
+                }),
+                success: function (result) {
+                    if (result) {
+                        //成功
+                        //2. 构造节点
+                        var divE = "<div>" + from + "对" + to + "说:" + say + "</div>";
+                        //3. 把节点添加到页面上    
+                        $(".container").append(divE);
+
+                        //4. 清空输入框的值
+                        $('#from').val("");
+                        $('#to').val("");
+                        $('#say').val("");
+                    } else {
+                        //失败
+                        alert("发布失败");
+                    }
+                }
+            });
+
+
+
+
+
+
+
         }
-        
+
     </script>
 </body>
 
