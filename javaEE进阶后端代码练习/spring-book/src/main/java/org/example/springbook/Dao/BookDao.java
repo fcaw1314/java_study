@@ -2,6 +2,7 @@ package org.example.springbook.Dao;
 
 import org.example.springbook.Model.BookInfo;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
  * @description:
  * @date 2024/7/16 15:32
  */
-@Component
+@Repository
 public class BookDao {
 
     public List<BookInfo> mockData() {
