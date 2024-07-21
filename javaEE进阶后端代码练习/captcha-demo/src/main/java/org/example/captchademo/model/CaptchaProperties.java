@@ -10,16 +10,17 @@ import org.springframework.stereotype.Component;
  * @description:
  * @date 2024/7/20 17:17
  */
-@Data
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "captcha")
+@Data
 public class CaptchaProperties {
     private Integer width;
     private Integer height;
     private Session session;
+
     @Data
     public static class Session {
-        private String key;
+        private String code;
         private String date;
     }
 }
