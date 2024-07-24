@@ -7,6 +7,8 @@
 public class runCase {
     public static void main(String[] args) throws InterruptedException {
         FirstTest test = new FirstTest();
-        test.test01();
-    }   
+//        test.test01();
+//        test.test02();
+        test.test03();
+    }
 }

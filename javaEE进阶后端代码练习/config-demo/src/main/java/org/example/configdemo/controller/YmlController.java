@@ -1,7 +1,7 @@
 package org.example.configdemo.controller;
 
 import jakarta.annotation.PostConstruct;
-import org.example.configdemo.Student;
+import org.example.configdemo.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
