@@ -1,9 +1,6 @@
 package org.bite.mybatis.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.bite.mybatis.model.UserInfo;
 
 import java.util.List;
@@ -33,4 +30,35 @@ public interface UserInfoMapper {
     @Insert("insert into userinfo (username, password, age, gender, phone, delete_flag)" +
             "values (#{username},#{password},#{age},#{gender},#{phone},#{deleteFlag})")
     Integer insert(UserInfo userInfo);
+
+    @Options(useGeneratedKeys = true , keyProperty = "id")
+    @Insert("insert into userinfo (username, password, age, gender, phone, delete_flag)" +
+            "values (#{userInfo.username},#{userInfo.password}," +
+            "#{userInfo.age},#{userInfo.gender},#{userInfo.phone},#{userInfo.deleteFlag})")
+    Integer insert2(@Param("userInfo") UserInfo userInfo);
+
+    @Delete("delete from userinfo where id = #{id}")
+    Integer delete(Integer id);
+
+    @Update("update userinfo set password = #{password} where id = #{id}")
+    Integer update(UserInfo userInfo);
+
+    //注解方式(定义结果映射)
+    @Results({
+            @Result(column = "delete_flag",property = "deleteFlag"),
+            @Result(column = "create_time",property = "createTime"),
+            @Result(column = "update_time",property = "updateTime"),
+    })
+    @Select("select * from userinfo")
+    List<UserInfo> queryUserInfo3();
+
+    //不推荐
+    @Insert("<script>insert into userinfo (username, password," +
+            "<if test='age != null'> age,</if> " +
+            "gender, phone) " +
+            "values (#{username}, #{password}, " +
+            "<if test='age != null'> #{age},</if> " +
+            "#{gender}, #{phone}) " +
+            "</script>")
+    Integer insertByCondition(UserInfo userInfo);
 }
