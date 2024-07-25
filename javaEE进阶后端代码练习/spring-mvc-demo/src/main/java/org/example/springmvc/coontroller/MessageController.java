@@ -1,6 +1,6 @@
-package org.example.springmvc;
+package org.example.springmvc.coontroller;
 
-import org.apache.logging.log4j.message.Message;
+import org.example.springmvc.model.MessageInfo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
