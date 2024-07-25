@@ -1,4 +1,4 @@
-package org.example.springmvc;
+package org.example.springmvc.model;
 
 import lombok.Data;
 
