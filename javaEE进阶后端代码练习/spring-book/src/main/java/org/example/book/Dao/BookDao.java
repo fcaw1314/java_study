@@ -1,7 +1,6 @@
-package org.example.springbook.Dao;
+package org.example.book.Dao;
 
-import org.example.springbook.Model.BookInfo;
-import org.springframework.stereotype.Component;
+import org.example.book.Model.BookInfo;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
