@@ -1,13 +1,11 @@
-package org.example.springbook.Service;
+package org.example.book.Service;
 
-import org.example.springbook.Dao.BookDao;
-import org.example.springbook.Model.BookInfo;
+import org.example.book.Dao.BookDao;
+import org.example.book.Model.BookInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,5 +32,9 @@ public class BookService {
             }
         }
         return bookInfos;
+    }
+
+    public Integer addBook(BookInfo bookInfo){
+
     }
 }

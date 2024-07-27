@@ -70,7 +70,7 @@
             success: function (messages) {
                 if (messages != null) {
                     for (var message of messages) {
-                        var divE = "<div>" + message.from + "对" + message.to + "说:" + message.msg + "</div>";
+                        var divE = "<div>" + message.from + "对" + message.to + "说:" + message.message + "</div>";
                         $(".container").append(divE);
                     }
                 }
@@ -95,7 +95,7 @@
                 data: JSON.stringify({
                     "from": from,
                     "to": to,
-                    "msg": say
+                    "message": say
                 }),
                 success: function (result) {
                     if (result) {

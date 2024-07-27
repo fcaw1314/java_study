@@ -13,32 +13,139 @@
         insert into userinfo (username, password, age, gender, phone)
         values (#{username}, #{password}, #{age}, #{gender}, #{phone})
     </insert>
+
     <insert id="insertByCondition">
-        insert into userinfo (username, password,
-         <if test="age != null">
-             age,
-         </if>
-         gender, phone)
-        values (#{username}, #{password},
-        <if test="age != null">
-             #{age},
-        </if>
-        #{gender}, #{phone})
+        insert into userinfo
+        <trim prefixOverrides="," suffixOverrides="," prefix="(" suffix=")">
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="phone != null">
+                phone
+            </if>
+        </trim>
+
+        values
+        <trim prefixOverrides="," suffixOverrides="," suffix=")" prefix="(">
+            <if test="username != null">
+                #{username},
+            </if>
+            <if test="password != null">
+                #{password},
+            </if>
+            <if test="age != null">
+                #{age},
+            </if>
+            <if test="gender != null">
+                #{gender},
+            </if>
+            <if test="phone != null">
+                #{phone}
+            </if>
+        </trim>
+
 
     </insert>
 
     <update id="updateUserInfo">
-        update userinfo set phone = #{phone} where id = #{id}
+        update userinfo
+        set phone = #{phone}
+        where id = #{id}
+    </update>
+    <update id="updateByCondition">
+        update userinfo
+        <trim prefixOverrides="," suffixOverrides="," prefix="set">
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="age != null">
+                age = #{age}
+            </if>
+        </trim>
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+        </where>
+    </update>
+    <update id="updateByCondition2">
+        update userinfo
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="age != null">
+                age = #{age}
+            </if>
+        </set>
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+        </where>
     </update>
 
     <delete id="deleteUser">
-        delete from userinfo where id = #{id}
+        delete
+        from userinfo
+        where id = #{id}
+    </delete>
+    <delete id="BatchDelete">
+        delete from userinfo where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
     </delete>
 
     <select id="queryUserInfos" resultType="org.bite.mybatis.model.UserInfo">
-        select * from userinfo
+        select *
+        from userinfo
     </select>
     <select id="queryUserInfos2" resultMap="XMLBaseMap">
-        select * from userinfo
+        select *
+        from userinfo
     </select>
+
+    <select id="selectByCondition" resultType="org.bite.mybatis.model.UserInfo">
+        select * from userinfo
+        <where>
+            <if test="username != null">
+                username = #{username}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+        </where>
+    </select>
+    <select id="selectByCondition2" resultType="org.bite.mybatis.model.UserInfo">
+        select * from userinfo where 1 = 1
+            <if test="username != null">
+                and username = #{username}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+    </select>
+
 </mapper>

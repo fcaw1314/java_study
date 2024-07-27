@@ -1,11 +1,13 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author yxb
@@ -84,7 +86,80 @@ public class FirstTest {
 //        //获取元素对应的文本信息---第二个热搜
 //        System.out.println(ele.getText());
 
+        //获取百度一下按钮上的文本
+//        String txt = driver.findElement(By.cssSelector("#su")).getAttribute("value");
+//        System.out.println("百度一下上的按钮文字是:" + txt);
 
+//        String title = driver.getTitle();
+//        String url = driver.getCurrentUrl();
+//        System.out.println("title = " + title);
+//        System.out.println("url = " + url);
+
+        //设置窗口大小
+//        driver.manage().window().minimize();//最小化
+//        Thread.sleep(3000);
+//
+//        driver.manage().window().maximize();//最大化
+//        Thread.sleep(3000);
+//
+//        driver.manage().window().fullscreen();//全屏
+//        Thread.sleep(3000);
+//
+//        driver.manage().window().setSize(new Dimension(1624,724));//设置大小
+//        Thread.sleep(3000);
+
+
+
+//        System.out.println("跳转之后: "+ driver.getTitle());
+//        //点击新闻
+//        driver.findElement(By.cssSelector("#s-top-left > a:nth-child(1)")).click();
+//        Thread.sleep(1000);
+//
+//        System.out.println("跳转之后: "+ driver.getTitle());
+//        //测试百度新闻首页
+//        driver.findElement(By.cssSelector("#headline-tabs > ul > li > a"));
+//        Thread.sleep(3000);
+
+        driver.quit();
+    }
+
+    void test04() throws InterruptedException {
+        createDriver();
+    //设置窗口大小
+//        driver.manage().window().minimize();//最小化
+//        Thread.sleep(3000);
+//
+//        driver.manage().window().maximize();//最大化
+//        Thread.sleep(3000);
+//
+//        driver.manage().window().fullscreen();//全屏
+//        Thread.sleep(3000);
+//
+//        driver.manage().window().setSize(new Dimension(1624,724));//设置大小
+//        Thread.sleep(3000);
+
+
+        //点击新闻
+        driver.findElement(By.cssSelector("#s-top-left > a:nth-child(1)")).click();
+
+
+
+
+
+        String curHandle = driver.getWindowHandle();
+        System.out.println(curHandle);
+
+        System.out.println("======================");
+
+        Set<String> allHandle = driver.getWindowHandles();
+        for(String handle : allHandle){
+            if(handle != curHandle){
+                //切换driver--百度新闻
+                driver.switchTo().window(handle);
+            }
+        }
+        //测试百度新闻首页
+        driver.findElement(By.cssSelector("#headline-tabs > ul > li > a"));
 
         driver.quit();
     }

@@ -22,7 +22,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/queryUserInfos")
-    public List<UserInfo> queryUserInfos(){
+    public List<UserInfo> queryUserInfos()
+    {
         return userService.queryUserInfos();
     }
 

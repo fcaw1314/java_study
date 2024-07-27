@@ -11,7 +11,11 @@ import lombok.Data;
 
 @Data
 public class MessageInfo {
+    private Integer id;
     private String from;
     private String to;
-    private String msg;
+    private String message;
+    private Integer deleteFlag;
+    private String createTime;
+    private String updateTime;
 }

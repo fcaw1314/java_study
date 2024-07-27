@@ -1,13 +1,13 @@
-package org.example.springbook.Controller;
+package org.example.book.Controller;
 
-import org.example.springbook.Model.BookInfo;
-import org.example.springbook.Service.BookService;
+import org.example.book.Model.BookInfo;
+import org.example.book.Model.PageResult;
+import org.example.book.Model.RequestPage;
+import org.example.book.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,5 +30,8 @@ public class BookController {
         return bookInfos;
     }
 
+    @RequestMapping("/getListPage")
+    public PageResult<BookInfo> getListPage(RequestPage requestPage){
 
+    }
 }

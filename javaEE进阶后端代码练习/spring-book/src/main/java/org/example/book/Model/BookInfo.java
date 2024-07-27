@@ -1,4 +1,4 @@
-package org.example.springbook.Model;
+package org.example.book.Model;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Data
 public class BookInfo {
 
-    private Integer bookId;
+    private Integer id;
     private String bookName;
     private String author;
     private Integer num;

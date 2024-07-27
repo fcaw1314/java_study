@@ -19,4 +19,15 @@ public interface UserInfoXMLMapper {
     Integer deleteUser(Integer id);
 
     Integer insertByCondition(UserInfo userInfo);
+
+    List<UserInfo> selectByCondition(UserInfo userInfo);
+
+    List<UserInfo> selectByCondition2(UserInfo userInfo);
+
+    Integer updateByCondition(UserInfo userInfo);
+
+    Integer updateByCondition2(UserInfo userInfo);
+
+    Integer BatchDelete(List<Integer> ids);
+
 }

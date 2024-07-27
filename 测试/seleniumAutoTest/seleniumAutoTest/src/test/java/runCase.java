@@ -9,6 +9,7 @@ public class runCase {
         FirstTest test = new FirstTest();
 //        test.test01();
 //        test.test02();
-        test.test03();
+//        test.test03();
+        test.test04();
     }
 }
