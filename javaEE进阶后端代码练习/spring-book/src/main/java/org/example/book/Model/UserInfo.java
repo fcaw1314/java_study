@@ -2,6 +2,8 @@ package org.example.book.Model;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @author yxb
  * @version 1.0
@@ -14,7 +16,7 @@ public class UserInfo {
     private String userName;
     private String password;
     private Integer deleteFlag;
-    private Data createTime;
-    private Data updateTime;
+    private Date createTime;
+    private Date updateTime;
 
 }

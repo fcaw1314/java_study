@@ -16,11 +16,15 @@ public class BookInfo {
     private Integer id;
     private String bookName;
     private String author;
-    private Integer num;
+    private Integer count;
+
     private BigDecimal price;
-    private String publishName;
-    private Integer state;//1.可借阅   2.不可借阅
+    private String publish;
+    private Integer states;//1.可借阅   2.不可借阅
     private String stateCN;
+
+    private Data createTime;
+    private Data uodateTime;
 
     public BookInfo() {
 

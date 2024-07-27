@@ -8,5 +8,5 @@ package org.example.book.mapper;
  */
 public interface BookInfo {
 
-    Integer insert
+//    Integer insert
 }

@@ -30,8 +30,8 @@ public class BookController {
         return bookInfos;
     }
 
-    @RequestMapping("/getListPage")
-    public PageResult<BookInfo> getListPage(RequestPage requestPage){
-
-    }
+//    @RequestMapping("/getListPage")
+//    public PageResult<BookInfo> getListPage(RequestPage requestPage){
+//
+//    }
 }

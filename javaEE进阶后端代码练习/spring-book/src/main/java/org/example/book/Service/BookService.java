@@ -25,7 +25,7 @@ public class BookService {
         //没有数据,采用mock方式
         List<BookInfo> bookInfos = bookDao.mockData();
         for (BookInfo bookInfo : bookInfos) {
-            if (bookInfo.getState() == 1) {
+            if (bookInfo.getStates() == 1) {
                 bookInfo.setStateCN("可借阅");
             } else {
                 bookInfo.setStateCN("不可借阅");
@@ -34,7 +34,7 @@ public class BookService {
         return bookInfos;
     }
 
-    public Integer addBook(BookInfo bookInfo){
-
-    }
+//    public Integer addBook(BookInfo bookInfo){
+//
+//    }
 }

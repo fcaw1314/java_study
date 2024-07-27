@@ -77,18 +77,18 @@
                         for(var book of books){
                             //拼接Html
                             finalHtml += '<tr>';
-                            finalHtml += '<td><input type="checkbox" name="selectBook" value="'+book.bookId+'" id="selectBook" class="book-select"></td>';
-                            finalHtml += '<td>'+book.bookId+'</td>';
+                            finalHtml += '<td><input type="checkbox" name="selectBook" value="'+book.id+'" id="selectBook" class="book-select"></td>';
+                            finalHtml += '<td>'+book.id+'</td>';
                             finalHtml += '<td>'+book.bookName+'</td>';
                             finalHtml += '<td>'+book.author+'</td>';
-                            finalHtml += '<td>'+book.num+'</td>';
+                            finalHtml += '<td>'+book.count+'</td>';
                             finalHtml += '<td>'+book.price+'</td>';
-                            finalHtml += '<td>'+book.publishName+'</td>';
+                            finalHtml += '<td>'+book.publish+'</td>';
                             finalHtml += '<td>'+book.stateCN+'</td>';
                             finalHtml += '<td>';
                             finalHtml += '<div class="op">';
-                            finalHtml += '<a href="book_update.html?bookId='+book.bookId+'">修改</a>';
-                            finalHtml += '<a href="javascript:void(0)" onclick="deleteBook('+book.bookId+')">删除</a>';
+                            finalHtml += '<a href="book_update.html?bookId='+book.id+'">修改</a>';
+                            finalHtml += '<a href="javascript:void(0)" onclick="deleteBook('+book.id+')">删除</a>';
                             finalHtml += '</div>';
                             finalHtml += '</td></tr>';
 
