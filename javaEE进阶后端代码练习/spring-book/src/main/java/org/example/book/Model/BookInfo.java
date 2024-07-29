@@ -3,6 +3,7 @@ package org.example.book.Model;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @author yxb
@@ -20,13 +21,10 @@ public class BookInfo {
 
     private BigDecimal price;
     private String publish;
-    private Integer states;//1.可借阅   2.不可借阅
+    private Integer status;//1.可借阅   2.不可借阅
     private String stateCN;
 
-    private Data createTime;
-    private Data uodateTime;
+    private Date createTime;
+    private Date updateTime;
 
-    public BookInfo() {
-
-    }
 }

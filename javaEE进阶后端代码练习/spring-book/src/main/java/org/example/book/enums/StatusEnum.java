@@ -15,7 +15,8 @@ import java.util.Arrays;
 public enum StatusEnum {
     DELETED(0,"无效"),
     NORMAL(1,"可借阅"),
-    FORBIDDEN(2,"不可借阅");
+    FORBIDDEN(2,"不可借阅"),
+    ;
 
     @Getter
     private int code;
@@ -32,11 +33,13 @@ public enum StatusEnum {
 
 //        Arrays.stream(StatusEnum.values()).forEach();
 
-        for(StatusEnum statusEnum: StatusEnum.values()){
-            if(statusEnum.getCode() == code){
-                return statusEnum;
-            }
-        }
-        return null;
+//        for(StatusEnum statusEnum: StatusEnum.values()){
+//            if(statusEnum.getCode() == code){
+//                return statusEnum;
+//            }
+//        }
+//        return null;
+
+        return Arrays.stream(StatusEnum.values()).filter(x -> x.getCode() == code).findFirst().orElse(null);
     }
 }

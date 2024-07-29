@@ -1,6 +1,7 @@
 package org.example.book.Controller;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.example.book.Model.UserInfo;
 import org.example.book.Service.UserService;
 import org.example.book.constant.Constants;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description:
  * @date 2024/7/14 11:31
  */
+@Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -22,9 +24,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @RequestMapping("login")
     public String login(String userName, String password, HttpSession session) {
+        log.info("用户登录 username: {}, password: {}",userName,password);
         //1.参数校验
         //2.验证用户名和密码
         //3.存session
