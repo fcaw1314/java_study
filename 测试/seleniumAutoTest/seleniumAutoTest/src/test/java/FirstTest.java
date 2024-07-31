@@ -142,23 +142,21 @@ public class FirstTest {
         //点击新闻
         driver.findElement(By.cssSelector("#s-top-left > a:nth-child(1)")).click();
 
+//        String curHandle = driver.getWindowHandle();
+//
+//        Set<String> allHandle = driver.getWindowHandles();
+//        Thread.sleep(3000);
+//        for(String handle : allHandle){
+//            if(handle != curHandle){
+//                //切换driver--百度新闻
+//                driver.switchTo().window(handle);
+//            }
+//        }
+//        Thread.sleep(3000);
 
-
-
-
-        String curHandle = driver.getWindowHandle();
-        System.out.println(curHandle);
-
-        System.out.println("======================");
-
-        Set<String> allHandle = driver.getWindowHandles();
-        for(String handle : allHandle){
-            if(handle != curHandle){
-                //切换driver--百度新闻
-                driver.switchTo().window(handle);
-            }
-        }
         //测试百度新闻首页
+        //屏幕截图
+
         driver.findElement(By.cssSelector("#headline-tabs > ul > li > a"));
 
         driver.quit();

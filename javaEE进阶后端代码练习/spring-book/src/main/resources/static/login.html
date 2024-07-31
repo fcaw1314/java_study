@@ -42,11 +42,11 @@
                     password: $("#password").val()
                 },
                 success: function(result){
-                    if(result==""){
+                    if(result.code=="SUCCESS"){
                         //登录成功
                         location.href = "book_list.html";
                     }else{
-                        alert(result);
+                        alert(result.errMsg);
                     }
                 }
             });

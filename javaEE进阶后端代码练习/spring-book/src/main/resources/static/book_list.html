@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <!-- <tr>
                     <td><input type="checkbox" name="selectBook" value="1" id="selectBook" class="book-select"></td>
                     <td>1</td>
                     <td>大秦帝国第一册</td>
@@ -54,7 +54,7 @@
                             <a href="javascript:void(0)" onclick="deleteBook(1)">删除</a>
                         </div>
                     </td>
-                </tr>
+                </tr> -->
 
             </tbody>
         </table>
@@ -65,7 +65,7 @@
         <script>
 
             getBookList();
-            function getBookList() {
+            function getBookList() {    
                 $.ajax({
                     type: "get",
                     url: "/book/getListByPage" + location.search,
@@ -74,11 +74,11 @@
                             location.href = "login.html";
                         }
                         var result = body.data;
-                        if(result == null){
+                        if(result==null){
                             return;
                         }
                         var books = result.items;
-                        if (books == null) {
+                        if (books==null) {
                             return;
                         }
                         var finalHtml = "";
@@ -124,6 +124,14 @@
                                 }
                             }
                         });
+                    },
+                    error: function(error){
+                        if(error.status==401){
+                            //用户未登录
+                            // alert("请先登录");
+                            location.href = "login.html";
+                        }
+                        // console.log(error);
                     }
                 });
             }
@@ -141,7 +149,7 @@
                             bookId: id
                         },
                         success: function (result) {
-                            if (result) {
+                            if (result!=null && result.data==true) {
                                 alert("删除成功");
                                 location.href = "book_list.html";
                             } else {
@@ -169,7 +177,7 @@
                             ids: ids
                         },
                         success: function (result) {
-                            if (result) {
+                            if (result!=null && result.data==true) {
                                 alert("批量删除成功");
                                 location.href = "book_list.html";
                             } else {

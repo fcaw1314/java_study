@@ -17,7 +17,7 @@ public enum ResultCodeEnum {
 
     SUCCESS(200, "成功"),
     NOLOGIN(-1, "未登录"),
-    FAIL(-2, "内部错误"),
+    FAIL(-2, "其他错误"),
     ;
     @Getter
     private int code;

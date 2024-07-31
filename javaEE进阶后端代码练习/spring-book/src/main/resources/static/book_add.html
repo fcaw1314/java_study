@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label for="bookStock">图书库存</label>
-                <input type="text" class="form-control" placeholder="请输入图书库存" id="bookStock" name="count"/>
+                <input type="text" class="form-control" placeholder="请输入图书库存" id="bookStock" name="count" />
             </div>
 
             <div class="form-group">
@@ -70,11 +70,17 @@
                 url: "/book/addBook",
                 type: "post",
                 data: $("#addBook").serialize(),
-                success: function(result){
-                    if(result){
+                success: function (result) {
+                    if (result != null && result.data == true) {
                         location.href = "book_list.html";
-                    }else{
+                    } else {
                         alert("添加失败,请重新检查图书信息! ");
+                    }
+                },
+                error: function (error) {
+                    if (error.status == 401) {
+                        //用户未登录
+                        location.href = "login.html";
                     }
                 }
             });

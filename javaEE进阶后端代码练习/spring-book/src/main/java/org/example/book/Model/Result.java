@@ -31,4 +31,13 @@ public class Result<T> {
         result.setData(data);
         return result;
     }
+
+    public static <T> Result<T> fail(String errMsg){
+        //失败异常
+        Result result = new Result();
+        result.setErrMsg(errMsg);
+        result.setCode(ResultCodeEnum.FAIL);
+        result.setData(null);
+        return result;
+    }
 }

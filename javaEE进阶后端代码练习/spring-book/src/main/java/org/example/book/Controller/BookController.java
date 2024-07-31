@@ -41,13 +41,6 @@ public class BookController {
     public Result<PageResult<BookInfo>> getListByPage(RequestPage requestPage, HttpSession session) {
         log.info("getListByPage 接收参数: {}", requestPage);
         //1.参数校验，转换
-        //判断用户是否登录
-        //从session中获取值，
-        UserInfo userInfo = (UserInfo) session.getAttribute(Constants.USER_SESSION_KEY);
-        if (userInfo == null) {
-            //用户未登录
-            return Result.nologin();
-        }
         PageResult<BookInfo> result = bookService.getListByPage(requestPage);
         return Result.success(result);
     }

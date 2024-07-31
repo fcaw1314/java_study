@@ -6,9 +6,9 @@ package org.example.book.adapter;
  * @description:
  * @date 2024/7/29 16:41
  */
-public class Log4j {
+public class LogBack {
 
-    void print(String msg){
-        System.out.println("log4j打印日志：" + msg);
+    void out(String msg){
+        System.out.println("LogBack打印日志：" + msg);
     }
 }
