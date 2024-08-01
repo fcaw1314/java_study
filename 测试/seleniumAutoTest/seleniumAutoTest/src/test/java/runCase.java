@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /**
  * @author yxb
  * @version 1.0
@@ -5,11 +7,12 @@
  * @date 2024/7/18 16:44
  */
 public class runCase {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         FirstTest test = new FirstTest();
 //        test.test01();
 //        test.test02();
 //        test.test03();
-        test.test04();
+//        test.test04();
+        test.test09();
     }
 }

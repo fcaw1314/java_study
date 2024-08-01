@@ -1,11 +1,15 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +22,7 @@ import java.util.Set;
 public class FirstTest {
     WebDriver driver = null;
 
-    void createDriver(){
+    void createDriver() {
         //1. 打开浏览器 使用驱动来打开
         WebDriverManager.chromedriver().setup();
         //增加浏览器配置：创建驱动对象要强制指定允许访问所有的链接
@@ -109,7 +113,6 @@ public class FirstTest {
 //        Thread.sleep(3000);
 
 
-
 //        System.out.println("跳转之后: "+ driver.getTitle());
 //        //点击新闻
 //        driver.findElement(By.cssSelector("#s-top-left > a:nth-child(1)")).click();
@@ -123,9 +126,30 @@ public class FirstTest {
         driver.quit();
     }
 
-    void test04() throws InterruptedException {
+    //进阶版本的屏幕截图
+    void getScreenShot(String str) throws IOException {
+        //  ./src/test/image/
+        //                  /2024-7-31/
+        //                             test01-153255.png
+        //                             test01-153256.png
+        //屏幕截图
+        SimpleDateFormat sim1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sim2 = new SimpleDateFormat("HHmmssSS");
+
+        String dirTime = sim1.format(System.currentTimeMillis());
+        String fileTime = sim2.format(System.currentTimeMillis());
+
+        //./src/test/image/2024-7-31/test01-153255.png
+        String filename = "./src/test/image/" + dirTime + "/" + str + "-" + fileTime + ".png";
+        System.out.println("filename: " + filename);
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        //srcFile放到指定位置
+        FileUtils.copyFile(srcFile, new File(filename));
+    }
+
+    void test04() throws InterruptedException, IOException {
         createDriver();
-    //设置窗口大小
+        //设置窗口大小
 //        driver.manage().window().minimize();//最小化
 //        Thread.sleep(3000);
 //
@@ -140,25 +164,59 @@ public class FirstTest {
 
 
         //点击新闻
+        getScreenShot(getClass().getName());
+
         driver.findElement(By.cssSelector("#s-top-left > a:nth-child(1)")).click();
 
-//        String curHandle = driver.getWindowHandle();
-//
-//        Set<String> allHandle = driver.getWindowHandles();
+        String curHandle = driver.getWindowHandle();
+
+        Set<String> allHandle = driver.getWindowHandles();
 //        Thread.sleep(3000);
-//        for(String handle : allHandle){
-//            if(handle != curHandle){
-//                //切换driver--百度新闻
-//                driver.switchTo().window(handle);
-//            }
-//        }
+        for (String handle : allHandle) {
+            if (handle != curHandle) {
+                //切换driver--百度新闻
+                driver.switchTo().window(handle);
+            }
+        }
 //        Thread.sleep(3000);
 
         //测试百度新闻首页
         //屏幕截图
 
-        driver.findElement(By.cssSelector("#headline-tabs > ul > li > a"));
+        //屏幕截图
+//        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//        //srcFile放到指定位置
+//        FileUtils.copyFile(srcFile, new File("my.png"));
 
+        getScreenShot(getClass().getName());
+
+        driver.findElement(By.cssSelector("#headline-tabs > ul > li > a"));
+        driver.quit();
+    }
+
+    void test05() {
+        createDriver();
+        driver.findElement(By.cssSelector("#kw")).sendKeys("迪丽热巴");
+        driver.findElement(By.cssSelector("su")).click();
+
+//        driver.quit();
+    }
+
+    void test09() {
+        createDriver();
+        //隐式等待设置为5s，显⽰等待设置为10s，那么结果会是5+10=15s吗？
+        SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println(sim.format(System.currentTimeMillis()));
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#hotsearch-content-wrapper > li:nth-child(1) > a > span.title-content")));
+        } catch (Exception e) {
+            System.out.println("nosuelement!");
+        }
+        System.out.println(sim.format(System.currentTimeMillis()));
         driver.quit();
     }
 }
