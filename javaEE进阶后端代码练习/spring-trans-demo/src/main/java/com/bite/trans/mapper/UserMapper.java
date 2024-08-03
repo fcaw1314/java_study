@@ -11,6 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper {
-    @Insert("insert into ")
+    @Insert("insert into user_info(`user_name`,`password`)values(#{name},#{password})")
     Integer insert(String name,String password);
 }

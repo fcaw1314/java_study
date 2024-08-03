@@ -130,8 +130,8 @@ public class FirstTest {
     void getScreenShot(String str) throws IOException {
         //  ./src/test/image/
         //                  /2024-7-31/
-        //                             test01-153255.png
-        //                             test01-153256.png
+        //                             test01-153255114.png
+        //                             test01-153255456.png
         //屏幕截图
         SimpleDateFormat sim1 = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sim2 = new SimpleDateFormat("HHmmssSS");
