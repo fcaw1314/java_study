@@ -1,3 +1,4 @@
+import tests.ListPage;
 import tests.LoginPage;
 
 import java.io.IOException;
@@ -14,5 +15,8 @@ public class RunTests {
         login.loginPageRight();
         login.LoginSuc();
         login.LoginFail();
+
+        ListPage listPage = new ListPage();
+        listPage.ListNoLogin();
     }
 }

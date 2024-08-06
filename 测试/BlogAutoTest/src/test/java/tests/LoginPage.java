@@ -1,6 +1,7 @@
 package tests;
 
 import common.Utils;
+import org.junit.jupiter.api.Timeout;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
@@ -25,11 +26,11 @@ public class LoginPage extends Utils {
         driver.findElement(By.cssSelector("body > div.nav > a:nth-child(4)"));
         //登陆输入框
         driver.findElement(By.cssSelector("body > div.container-login > div > div:nth-child(2)"));
-
     }
 
     //检查登录功能---成功登录
-    public void LoginSuc() throws IOException, IOException {
+    public void LoginSuc() throws IOException {
+        //方法一:  通过clear保证输入框没有信息
         driver.findElement(By.cssSelector("#username")).clear();
         driver.findElement(By.cssSelector("#password")).clear();
 
@@ -42,24 +43,33 @@ public class LoginPage extends Utils {
         String expect = driver.getTitle();
         assert expect.equals("博客列表页");
 
-//        getScreenShot(getClass().getName());
+        getScreenShot(getClass().getName());
         driver.navigate().back();
     }
 
     //检查登陆功能---登陆失败
-    public void LoginFail(){
-        //通过clear保证输入框没有信息
-        driver.findElement(By.cssSelector("#username")).clear();
-        driver.findElement(By.cssSelector("#password")).clear();
+    public void LoginFail() throws InterruptedException, IOException {
+        //方法一:  通过clear保证输入框没有信息
+//        driver.findElement(By.cssSelector("#username")).clear();
+//        driver.findElement(By.cssSelector("#password")).clear();
+
+        //方法二: 通过刷新保证输入框没有文本
+        driver.navigate().refresh();
 
         driver.findElement(By.cssSelector("#username")).sendKeys("zhangsan");
         driver.findElement(By.cssSelector("#password")).sendKeys("1234561111");
         driver.findElement(By.cssSelector("#submit")).click();
 
+        //处理警告弹窗
+        Thread.sleep(1000);
         Alert alert = driver.switchTo().alert();
-//        String res = alert.toString();
+        String res = alert.getText();
+        alert.accept();
 
-//        assert res.equals("密码错误");
+        getScreenShot(getClass().getName());
 
+        assert res.equals("密码错误");
+
+//        driver.quit();
     }
 }
